@@ -312,116 +312,6 @@ header .first-menu li .login-logout:hover, header .first-menu li .login-logout.a
   overflow-x: hidden;
 }
 
-.list {
-  width: 100%;
-  flaot: left;
-  display: table;
-  border-collapse: seperate;
-}
-.list li {
-  display: table-row;
-  padding: 0 0 6px 0;
-}
-.list li:last-child div {
-  border-bottom: none;
-}
-.list li:hover div {
-  background: #f0f7fa;
-}
-.list li.new {
-  background: #fffeef;
-}
-.list li div {
-  display: table-cell;
-  vertical-align: middle;
-  border-bottom: 1px solid #ebebeb;
-  padding: 4px 0;
-  color: #545454;
-  text-decoration: none;
-  line-height: 22px;
-}
-.list li div p {
-  font-size: 13px;
-  display: block;
-  margin-top: 6px;
-  margin-bottom: 0;
-}
-.list li .list-name {
-  margin-right: 14px;
-}
-.list li .list-download {
-  text-align: center;
-}
-.list li .list-summary {
-  text-align: center;
-}
-.list li .list-order {
-  text-align: center;
-}
-.list li .list-copy {
-  text-align: center;
-}
-.list li .list-modify {
-  text-align: center;
-}
-.list .labels {
-  font-size: 14px;
-  color: #868686;
-  text-align: center;
-}
-.list .labels:hover div {
-  background: white;
-}
-.list .labels div {
-  padding: 12px 0 4px;
-  border-bottom: 2px solid #ebebeb;
-}
-.list .labels .label-created {
-  text-align: left;
-  width: auto;
-}
-.list .labels .label-name {
-  width: 300px;
-  text-align: left;
-}
-.list .labels .label-status {
-  text-align: left;
-}
-
-.list-foot {
-  border-top: 2px solid #ebebeb;
-  padding-top: 12px;
-}
-.list-foot .button {
-  float: left;
-}
-.list-foot .pagination {
-  float: right;
-}
-.list-foot .pagination a, .list-foot .pagination span {
-  margin-top: 2px;
-  color: #545454;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -o-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -khtml-border-radius: 2px;
-  border-radius: 2px;
-  border: 1px solid #cfcfcf;
-  margin-left: 4px;
-  padding: 1px 8px;
-  display: inline-block;
-  text-decoration: none;
-}
-.list-foot .pagination a:hover {
-  background: #cfcfcf;
-}
-.list-foot .pagination span {
-  color: white;
-  background: #545454;
-  border: 1px solid #868686;
-}
-
 .new-game {
   display: inline;
   float: left;
@@ -432,6 +322,17 @@ header .first-menu li .login-logout:hover, header .first-menu li .login-logout.a
 }
 * html .new-game {
   overflow-x: hidden;
+}
+
+.doors h3 {
+  font-size: 18px;
+  margin-bottom: 50px;
+}
+.doors li {
+  display: inline;
+}
+.doors img {
+  width: 260px;
 }
 
 .wizard {
@@ -959,21 +860,11 @@ header .first-menu li .login-logout:hover, header .first-menu li .login-logout.a
   padding: 8px 16px 7px;
 }
 
-.mask {
-  background: rgba(0, 0, 0, 0.4);
-  position: fixed;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  z-index: 50;
-}
-
 .register {
   width: 400px;
   position: absolute;
-  top: 60px;
-  left: 300px;
+  top: 118px;
+  left: 250px;
 }
 .register h2 {
   margin-bottom: 24px;

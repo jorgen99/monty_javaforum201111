@@ -1,0 +1,18 @@
+#{extends 'main.html' /}
+#{set title:'Enter Name' /}
+
+<div class="main-content start">
+
+    <div class="doors">
+        <h3>Hello <strong>${session.name}</strong>, please choose a door.</h3>
+
+    <ul class="door-list">
+        #{list items:1..3, as:'i'}
+        <li>
+          <img id="door${i}" class="door" src="@{'public/images/door.jpg'}"/>
+        </li>
+        #{/list}
+    </ul>
+
+    </div>
+</div>

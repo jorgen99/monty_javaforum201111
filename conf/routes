@@ -5,6 +5,8 @@
 # Home page
 GET     /                                       Application.index
 GET     /start                                  Application.start
+POST    /name                                   Application.name
+GET     /game                                   Application.game
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

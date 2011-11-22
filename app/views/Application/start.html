@@ -1,0 +1,25 @@
+#{extends 'main.html' /}
+#{set title:'Enter Name' /}
+
+<div class="main-content start">
+
+    <div class="register">
+
+    #{form @name()}
+
+    <ul class="form">
+        <li>
+          <input type="text" name="name" placeholder="Player name" value="${flash.name}">
+        </li>
+        <li>
+            <input class="button gray" type="submit" value="Play!">
+            <p class="error">
+                #{ifErrors}${errors[0]}#{/ifErrors}
+            </p>
+        </li>
+    </ul>
+
+    #{/form}
+
+    </div>
+</div>
