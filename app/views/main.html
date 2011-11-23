@@ -7,6 +7,15 @@
     <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
     <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
     #{script 'jquery-1.7.min.js'/}
+
+    <script type="text/javascript">
+        $(function() {
+            if(typeof window.localStorage === undefined) {
+                alert("Promise you'll get a decent browser?");
+                window.location.replace('http://www.google.com/chrome');
+            }
+        })
+    </script>
 </head>
 <body>
 <div class="wrapper">

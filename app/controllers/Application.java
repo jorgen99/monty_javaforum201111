@@ -35,6 +35,12 @@ public class Application extends Controller {
         renderJSON(replyMap("goatDoor", goatDoorNo));
     }
 
+    public static void stayOrSwitch(Integer doorNo) {
+        Game game = currentGame();
+        int carDoor = game.stayOrSwitch(doorNo);
+        renderJSON(replyMap("carDoor", carDoor));
+    }
+
     private static Map<String, String> replyMap(String key, Object value) {
         Map<String, String> reply = new HashMap<String, String>(1);
         reply.put(key, value.toString());

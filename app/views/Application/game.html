@@ -1,23 +1,89 @@
 #{extends 'main.html' /}
-#{set title:'Enter Name' /}
+#{set title:'Choose Door' /}
 
 <script type="text/javascript">
 
     var goatUrl = '@{'public/images/goat.png'}';
+    var carUrl =  '@{'public/images/car.png'}';
 
-    $(function(){
+    $(function() {
         $('.door-list img').click(function() {
             var doorNo = $(this).attr('id').substr(4);
-            var doorAction = #{jsAction @selectDoor(':doorNo') /}
-            $.post(doorAction({doorNo: doorNo}), function(reply) {
-                var message =
-                        "Door number " + reply.goatDoor +
-                        " is a goat. Stay or switch?";
-                $('.doors h3').text(message);
-                $('#door' + reply.goatDoor).attr('src', goatUrl);
-            });
+            if(noDoorSelected()) {
+                selectDoor(doorNo);
+            } else {
+                stayOrSwitch(doorNo);
+            }
         });
     });
+
+    function selectDoor(doorNo) {
+        window.localStorage.setItem("selectedDoor", doorNo);
+        var doorAction = #{jsAction @selectDoor(':doorNo') /};
+        $.post(doorAction({doorNo: doorNo}), function(reply) {
+            var goatDoor = reply.goatDoor;
+            stayOrSwitchMessage(goatDoor);
+            var goatImg = $('#door' + goatDoor);
+            swapDoorForGoat(goatImg);
+            replaceClickEventOnGoat(goatImg);
+        });
+    }
+
+    function stayOrSwitch(doorNo) {
+        var doorAction = #{jsAction @stayOrSwitch(':doorNo') /};
+        $.post(doorAction({doorNo: doorNo}), function(reply) {
+            var carDoor = reply.carDoor;
+            var selectedDoor = window.localStorage.getItem("selectedDoor");
+            var message;
+            if(carDoor == selectedDoor) {
+                $('#door' + doorNo).attr('src', carUrl);
+                message = "You won the car! ";
+            } else {
+                $('#door' + doorNo).attr('src', goatUrl);
+                message = "No car this time... ";
+            }
+            display(message + '<a href="@{game(game.playerName)}">Play again?</a>');
+            window.localStorage.removeItem("selectedDoor");
+        });
+    }
+
+    function openAllDoors(carDoor) {
+        $.each($('.door-list img'), function(index, doorImg) {
+           if((index + 1) == carDoor) {
+               $(doorImg).attr('src', carUrl);
+           } else {
+               $(doorImg).attr('src', goatUrl);
+           }
+        });
+    }
+    function display(message) {
+        $('.doors h3').html(message);
+    }
+
+    function stayOrSwitchMessage(goatDoor) {
+        var message =
+                "Door number " + goatDoor +
+                " is a goat. Stay or switch?";
+        display(message);
+    }
+
+    function swapDoorForGoat(goatImg) {
+        goatImg.attr('src', goatUrl);
+        return goatImg;
+    }
+
+    function replaceClickEventOnGoat(goatImg) {
+        goatImg.off('click');
+        goatImg.click(function() {
+            display("Leave the goat alone! Stay or switch?");
+        });
+    }
+
+    function noDoorSelected() {
+        return $('.doors h3').text().indexOf('switch') == -1;
+    }
+
+
 </script>
 
 <div class="main-content start">

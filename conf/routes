@@ -8,6 +8,7 @@ GET     /start                                  Application.start
 POST    /name                                   Application.name
 GET     /game/{playerName}                      Application.game
 POST    /selectDoor                             Application.selectDoor
+POST    /stayOrSwitch                           Application.stayOrSwitch
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
