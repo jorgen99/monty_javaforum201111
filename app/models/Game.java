@@ -15,6 +15,7 @@ public class Game extends Model {
 
     public int selectDoor(int doorNo) {
         selectedDoor = doorNo;
+        save();
         return 3;
     }
 }
