@@ -25,7 +25,29 @@ public class Application extends Controller {
     public static void game(String playerName) {
         validatePlayerName(playerName);
         Game game = new Game(playerName).save();
+        session.put("gameId", game.id);
         render(game);
+    }
+
+    public static void selectDoor(Integer doorNo) {
+        Game game = currentGame();
+        int goatDoorNo = game.selectDoor(doorNo);
+        renderJSON(replyMap("goatDoor", goatDoorNo));
+    }
+
+    private static Map<String, String> replyMap(String key, Object value) {
+        Map<String, String> reply = new HashMap<String, String>(1);
+        reply.put(key, value.toString());
+        return reply;
+    }
+
+    private static Game currentGame() {
+        Long gameId = Long.parseLong(session.get("gameId"));
+        Game currentGame = Game.findById(gameId);
+        if(currentGame == null) {
+            start();
+        }
+        return currentGame;
     }
 
     private static void validatePlayerName(String playerName) {

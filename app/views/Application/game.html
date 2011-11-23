@@ -1,10 +1,29 @@
 #{extends 'main.html' /}
 #{set title:'Enter Name' /}
 
+<script type="text/javascript">
+
+    var goatUrl = '@{'public/images/goat.png'}';
+
+    $(function(){
+        $('.door-list img').click(function() {
+            var doorNo = $(this).attr('id').substr(4);
+            var doorAction = #{jsAction @selectDoor(':doorNo') /}
+            $.post(doorAction({doorNo: doorNo}), function(reply) {
+                var message =
+                        "Door number " + reply.goatDoor +
+                        " is a goat. Stay or switch?";
+                $('.doors h3').text(message);
+                $('#door' + reply.goatDoor).attr('src', goatUrl);
+            });
+        });
+    });
+</script>
+
 <div class="main-content start">
 
     <div class="doors">
-        <h3>Hello <strong>${game.playerName}</strong>, please choose a door.</h3>
+        <h3><strong>${game.playerName}</strong>, please choose a door.</h3>
 
     <ul class="door-list">
         #{list items:1..3, as:'i'}
