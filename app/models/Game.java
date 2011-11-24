@@ -22,7 +22,6 @@ public class Game extends Model {
 
     public int selectDoor(int doorNo) {
         initialPlayerDoor = doorNo;
-        save();
         return goatDoor();
     }
 
@@ -33,7 +32,6 @@ public class Game extends Model {
         if(doorNo == carDoor) {
             won = true;
         }
-        save();
         return carDoor;
     }
 
