@@ -32,12 +32,14 @@ public class Application extends Controller {
     public static void selectDoor(Integer doorNo) {
         Game game = currentGame();
         int goatDoorNo = game.selectDoor(doorNo);
+        game.save();
         renderJSON(replyMap("goatDoor", goatDoorNo));
     }
 
     public static void stayOrSwitch(Integer doorNo) {
         Game game = currentGame();
         int carDoor = game.stayOrSwitch(doorNo);
+        game.save();
         renderJSON(replyMap("carDoor", carDoor));
     }
 
