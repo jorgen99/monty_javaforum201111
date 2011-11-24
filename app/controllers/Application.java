@@ -32,6 +32,7 @@ public class Application extends Controller {
     public static void selectDoor(Integer doorNo) {
         Game game = currentGame();
         int goatDoorNo = game.selectDoor(doorNo);
+        game.save();
         renderJSON(replyMap("goatDoor", goatDoorNo));
     }
 
