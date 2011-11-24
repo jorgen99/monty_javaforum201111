@@ -1,7 +1,16 @@
 *{ You can use plain selenium command using the selenium tag }*
 
 #{selenium}
-    // Open the home page, and check that no error occured
     open('/')
-    assertNotTitle('Application error')
+    waitForVisible('link=Start!')
+    clickAndWait('link=Start!')
+    type('name=playerName','Jörgen')
+    clickAndWait('css=input.button.gray')
+    verifyTextPresent('Jörgen, please choose a door.')
+    click('id=door1')
+    waitForTextPresent('Stay or switch?')
+    assertAttribute('id=door1@src', '/public/images/door.jpg')
+    click('id=door1')
+    waitForTextPresent('Play again?')
+    verifyTextPresent('Play again?')
 #{/selenium}
