@@ -18,7 +18,6 @@
     });
 
     function selectDoor(doorNo) {
-        window.localStorage.setItem("selectedDoor", doorNo);
         var doorAction = #{jsAction @selectDoor(':doorNo') /};
         $.post(doorAction({doorNo: doorNo}), function(reply) {
             var goatDoor = reply.goatDoor;
@@ -33,9 +32,8 @@
         var doorAction = #{jsAction @stayOrSwitch(':doorNo') /};
         $.post(doorAction({doorNo: doorNo}), function(reply) {
             var carDoor = reply.carDoor;
-            var selectedDoor = window.localStorage.getItem("selectedDoor");
             var message;
-            if(carDoor == selectedDoor) {
+            if(carDoor == carDoor) {
                 $('#door' + doorNo).attr('src', carUrl);
                 message = "You won the car! ";
             } else {
@@ -43,7 +41,6 @@
                 message = "No car this time... ";
             }
             display(message + '<a href="@{game(game.playerName)}">Play again?</a>');
-            window.localStorage.removeItem("selectedDoor");
         });
     }
 
