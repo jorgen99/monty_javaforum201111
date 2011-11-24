@@ -17,7 +17,6 @@ public class Game extends Model {
     public Game(String playerName) {
         this.playerName = playerName;
         this.carDoor = randomDoor();
-        Logger.info("Game count: " + Game.count());
     }
 
     public int selectDoor(int doorNo) {
